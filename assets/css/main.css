@@ -384,12 +384,15 @@ body.is-preload #main {
 
 /* Footer */
 #footer {
+  position: relative;
+  top: -3.3em;
+  margin-bottom: -3.3em;
   align-self: flex-end;
   width: 100%;
-  padding: 1.5em 0 0 0;
   color: rgba(255, 255, 255, 0.75);
   cursor: default;
   text-align: center;
+  z-index: 2;
 }
 #footer .copyright {
   margin: 0;
@@ -409,10 +412,10 @@ body.is-preload #main {
 }
 
 /* Wrapper */
-#wrapper {
+.wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   perspective: 1000px;
   position: relative;
@@ -420,15 +423,15 @@ body.is-preload #main {
   padding: 1.5em;
   z-index: 2;
 }
-#wrapper > * {
+.wrapper > * {
   z-index: 1;
 }
-#wrapper:before {
+.wrapper:before {
   content: "";
   display: block;
 }
 @media screen and (max-width: 360px) {
-  #wrapper {
+  .wrapper {
     padding: 0.75em;
   }
 }
