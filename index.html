@@ -29,8 +29,9 @@
     <!-- Main -->
     <section id="main">
       <header>
-        <span class="avatar"><img src="https://avatars0.githubusercontent.com/u/14026866" alt="Avatar" width="122"
-            height="122" /></span>
+        <span class="avatar">
+          <img src="https://avatars0.githubusercontent.com/u/14026866" alt="Avatar" width="122" height="122" />
+        </span>
         <h1>João Marques</h1>
         <p>Full Stack Developer</p>
       </header>
@@ -43,7 +44,11 @@
             <a href="https://www.instagram.com/jotaveultra/" class="icon brands fa-instagram">Instagram</a>
           </li>
           <li>
-            <a href="https://blog.joaomarq.work" class="icon brands fa-blogger-b">Blogger</a>
+            <a href="https://www.github.com/JotaVeUltra" class="icon brands fa-github">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/joão-marques-4b0898104/"
+              class="icon brands fa-linkedin-in">LinkedIn</a>
           </li>
         </ul>
       </footer>
@@ -62,29 +67,10 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="assets/js/particles-config.js"></script>
   <script>
-    if ("addEventListener" in window) {
-      window.addEventListener("load", function () {
-        document.body.className = document.body.className.replace(
-          /\bis-preload\b/,
-          ""
-        );
-      });
-      document.body.className += navigator.userAgent.match(/(MSIE|rv:11\.0)/)
-        ? " is-ie"
-        : "";
-    }
-  </script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("sw.js")
-        .then(function (registration) {
-          console.log("success load");
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
-    }
+    window.addEventListener("load", () => {
+      document.querySelector(".is-preload").classList.remove("is-preload");
+    });
+    navigator.serviceWorker.register("sw.js");
   </script>
 </body>
 
