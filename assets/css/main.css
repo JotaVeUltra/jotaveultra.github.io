@@ -333,6 +333,18 @@ ul.icons li a:hover {
 /* Main */
 #main {
   transform-origin: 50% 50%;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.card {
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
   transform: rotateX(0deg);
   transition: opacity 1s ease, transform 1s ease;
   padding: 4.5em 3em 3em 3em;
@@ -345,18 +357,18 @@ ul.icons li a:hover {
   text-align: center;
   width: 27em;
 }
-#main .avatar {
+.card .avatar {
   position: relative;
   display: block;
   margin-bottom: 1.5em;
 }
-#main .avatar img {
+.card .avatar img {
   display: block;
   margin: 0 auto;
   border-radius: 100%;
   box-shadow: 0 0 0 1.5em #f4f4f4;
 }
-#main .avatar:before {
+.card .avatar:before {
   content: "";
   display: block;
   position: absolute;
@@ -368,16 +380,19 @@ ul.icons li a:hover {
   background: #c8cccf;
 }
 @media screen and (max-width: 480px) {
-  #main {
+  .card header {
     padding: 4em 2em 2.5em 2em;
     width: 100%;
   }
-  #main .avatar:before {
+  .card .avatar:before {
     left: -2em;
     width: calc(100% + 4em);
   }
 }
-body.is-preload #main {
+body.is-preload .card {
+  -moz-transform: rotateX(15deg);
+  -webkit-transform: rotateX(15deg);
+  -ms-transform: rotateX(15deg);
   transform: rotateX(15deg);
   opacity: 0;
 }
