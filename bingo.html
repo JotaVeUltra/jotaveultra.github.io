@@ -50,7 +50,7 @@
         button:hover {
             background-color: #45a049;
         }
-        #resumo {
+        #resumo, #cartelasSorteadas {
             margin-top: 20px;
         }
     </style>
@@ -61,8 +61,8 @@
     <input type="number" id="numeroSorteado" placeholder="Número sorteado" />
     <button id="adicionarNumero">Adicionar</button>
 
+    <div id="cartelasSorteadas"></div>
     <div id="resumo"></div>
-
     <div class="cartelas" id="cartelas"></div>
 
     <script>
@@ -91,8 +91,10 @@
         ];
 
         const numerosSorteados = [];
-
         const cartelasDiv = document.getElementById('cartelas');
+        const cartelasSorteadasDiv = document.getElementById('cartelasSorteadas');
+        const resumoDiv = document.getElementById('resumo');
+
         const renderCartelas = () => {
             cartelasDiv.innerHTML = '';
             cartelas.forEach(cartela => {
@@ -117,14 +119,25 @@
             const numero = parseInt(input.value);
             if (!isNaN(numero) && !numerosSorteados.includes(numero)) {
                 numerosSorteados.push(numero);
-                renderCartelas();
+                atualizarCartelasSorteadas(numero);
                 atualizarResumo();
+                renderCartelas();
             }
             input.value = '';
         };
 
+        const atualizarCartelasSorteadas = (ultimoNumero) => {
+            const cartelasSorteadas = cartelas
+                .filter(cartela => cartela.numeros.includes(ultimoNumero))
+                .map(cartela => cartela.numero);
+
+            cartelasSorteadasDiv.innerHTML = `
+                <h3>Cartelas com o número ${ultimoNumero}:</h3>
+                <p>${cartelasSorteadas.length > 0 ? cartelasSorteadas.join(', ') : 'Nenhuma cartela contém este número.'}</p>
+            `;
+        };
+
         const atualizarResumo = () => {
-            const resumoDiv = document.getElementById('resumo');
             resumoDiv.innerHTML = `
                 <h3>Números sorteados: ${numerosSorteados.join(', ')}</h3>
             `;
