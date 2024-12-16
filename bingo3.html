@@ -83,6 +83,13 @@
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
+        #video, #canvas {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
     </style>
     <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
 </head>
@@ -98,6 +105,8 @@
     <div class="cartelas" id="cartelas"></div>
     <div id="log"></div>
     <button id="toggleLog">Toggle</button>
+    <video id="video"></video>
+    <canvas id="canvas"></canvas>
 
     <script>
         let cartelas = [];
@@ -107,6 +116,9 @@
         const resumoDiv = document.getElementById('resumo');
         const logDiv = document.getElementById('log');
         const toggleLogButton = document.getElementById('toggleLog');
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
 
         const renderCartelas = () => {
             cartelasDiv.innerHTML = '';
@@ -167,12 +179,13 @@
             }
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                const video = document.createElement('video');
                 video.srcObject = stream;
+                video.style.display = 'block';
                 video.play();
 
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.style.display = 'block';
 
                 // Capture the image after a short delay
                 setTimeout(async () => {
@@ -183,6 +196,8 @@
                     // Extract the bingo cartela number from the image
                     const cartelaNumero = await extractCartelaNumber(imageData);
                     // Save cartelaNumero to IndexedDB or process it as needed
+                    video.style.display = 'none';
+                    canvas.style.display = 'none';
                 }, 3000);
             } catch (error) {
                 logDiv.innerHTML += `<p>Error accessing the camera: ${error}</p>`;
