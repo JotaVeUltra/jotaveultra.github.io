@@ -19,7 +19,8 @@
     <div id="bingo-card"></div>
     <div id="error-log" class="error"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.0/dist/tesseract.min.js"></script>
+    <!-- Script atualizado para Tesseract.js versão 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <script>
         const upload = document.getElementById('upload');
         const canvas = document.getElementById('canvas');
@@ -66,7 +67,7 @@
                 return;
             }
 
-            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const imgData = canvas.toDataURL();
             Tesseract.recognize(
                 imgData,          // Imagem processada
                 'eng',            // Idioma
