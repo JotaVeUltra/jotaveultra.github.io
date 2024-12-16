@@ -64,6 +64,24 @@
             border-top: 1px solid #ccc;
             padding: 10px;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        #log.visible {
+            transform: translateY(0);
+        }
+        #toggleLog {
+            position: fixed;
+            bottom: 450px;
+            right: 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
     </style>
     <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
@@ -79,6 +97,7 @@
     <div id="resumo"></div>
     <div class="cartelas" id="cartelas"></div>
     <div id="log"></div>
+    <button id="toggleLog">Toggle</button>
 
     <script>
         let cartelas = [];
@@ -87,6 +106,7 @@
         const cartelasSorteadasDiv = document.getElementById('cartelasSorteadas');
         const resumoDiv = document.getElementById('resumo');
         const logDiv = document.getElementById('log');
+        const toggleLogButton = document.getElementById('toggleLog');
 
         const renderCartelas = () => {
             cartelasDiv.innerHTML = '';
@@ -181,8 +201,13 @@
             await worker.terminate();
             return text.trim(); // Return the extracted text
         };
+
         document.getElementById('adicionarNumero').addEventListener('click', adicionarNumero);
         document.getElementById('registrarCartela').addEventListener('click', registrarCartela);
+        toggleLogButton.addEventListener('click', () => {
+            logDiv.classList.toggle('visible');
+            toggleLogButton.style.bottom = logDiv.classList.contains('visible') ? '450px' : '0';
+        });
         renderCartelas();
     </script>
 </body>
