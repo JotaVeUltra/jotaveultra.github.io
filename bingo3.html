@@ -213,14 +213,12 @@
             const worker = createWorker({
                 logger: info => logDiv.innerHTML += `<p>${info.status}</p>` // Log progress
             });
-            await worker.load();
             await worker.loadLanguage('eng');
             await worker.initialize('eng');
             const { data: { text } } = await worker.recognize(imageData);
             await worker.terminate();
             return text.trim(); // Return the extracted text
         };
-
         document.getElementById('adicionarNumero').addEventListener('click', adicionarNumero);
         document.getElementById('registrarCartela').addEventListener('click', registrarCartela);
         toggleLogButton.addEventListener('click', () => {
