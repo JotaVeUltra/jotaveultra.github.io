@@ -194,7 +194,12 @@
 
                     const imageData = canvas.toDataURL('image/png');
                     // Extract the bingo cartela number from the image
-                    const cartelaNumero = await extractCartelaNumber(imageData);
+                    try {
+                        const cartelaNumero = await extractCartelaNumber(imageData);
+                        logDiv.innerHTML += `<p>Extracted cartela number: ${cartelaNumero}</p>`;
+                    } catch (error) {
+                        logDiv.innerHTML += `<p>Error extracting cartela number: ${error}</p>`;
+                    }
                     // Save cartelaNumero to IndexedDB or process it as needed
                     video.style.display = 'none';
                     canvas.style.display = 'none';
