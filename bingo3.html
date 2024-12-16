@@ -35,7 +35,7 @@
             background-color: #d4f4d2;
             border: 1px solid #4caf50;
         }
-        input[type="number"], button {
+        input, button {
             padding: 10px;
             margin-top: 10px;
             margin-right: 10px;
@@ -50,75 +50,55 @@
         button:hover {
             background-color: #45a049;
         }
-        #resumo, #cartelasSorteadas {
+        video {
+            width: 100%;
+            max-width: 300px;
             margin-top: 20px;
         }
-        #log {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 400px;
-            overflow-y: scroll;
-            background-color: white;
-            border-top: 1px solid #ccc;
-            padding: 10px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        #log.visible {
-            transform: translateY(0);
-        }
-        #toggleLog {
-            position: fixed;
-            bottom: 450px;
-            right: 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        #video, #canvas {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        canvas {
             display: none;
         }
     </style>
-    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/idb/build/iife/index-min.js"></script>
 </head>
 <body>
     <h1>Bingo Tracker</h1>
-    <p>Digite o número sorteado e clique em "Adicionar":</p>
-    <input type="number" id="numeroSorteado" placeholder="Número sorteado" />
-    <button id="adicionarNumero">Adicionar</button>
-    <button id="registrarCartela">Registrar Cartela</button>
-
-    <div id="cartelasSorteadas"></div>
+    <button id="abrirCamera">Tirar Foto da Cartela</button>
+    <video id="video" autoplay playsinline></video>
+    <button id="tirarFoto" style="display:none;">Capturar Cartela</button>
+    <canvas id="canvas"></canvas>
+    <p id="status"></p>
     <div id="resumo"></div>
     <div class="cartelas" id="cartelas"></div>
-    <div id="log"></div>
-    <button id="toggleLog">Toggle</button>
-    <video id="video"></video>
-    <canvas id="canvas"></canvas>
 
     <script>
+        const dbPromise = idb.openDB('bingo-tracker', 1, {
+            upgrade(db) {
+                db.createObjectStore('cartelas', { keyPath: 'numero' });
+            }
+        });
+
         let cartelas = [];
         const numerosSorteados = [];
-        const cartelasDiv = document.getElementById('cartelas');
-        const cartelasSorteadasDiv = document.getElementById('cartelasSorteadas');
-        const resumoDiv = document.getElementById('resumo');
-        const logDiv = document.getElementById('log');
-        const toggleLogButton = document.getElementById('toggleLog');
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
+        const statusDiv = document.getElementById('status');
+        const cartelasDiv = document.getElementById('cartelas');
+        const abrirCameraButton = document.getElementById('abrirCamera');
+        const tirarFotoButton = document.getElementById('tirarFoto');
+
+        const salvarCartela = async (cartela) => {
+            const db = await dbPromise;
+            await db.put('cartelas', cartela);
+            statusDiv.textContent = `Cartela ${cartela.numero} salva com sucesso.`;
+        };
+
+        const carregarCartelas = async () => {
+            const db = await dbPromise;
+            cartelas = await db.getAll('cartelas') || [];
+            renderCartelas();
+        };
 
         const renderCartelas = () => {
             cartelasDiv.innerHTML = '';
@@ -127,105 +107,71 @@
                 cartelaDiv.className = 'cartela';
                 cartelaDiv.innerHTML = `
                     <h3>Cartela ${cartela.numero}</h3>
-                    <p>
-                        ${cartela.numeros
-                            .map(numero => `
-                                <span class="numero ${numerosSorteados.includes(numero) ? 'sorteado' : ''}">
-                                    ${numero}
-                                </span>
-                            `).join('')}
-                    </p>
-                    <p><strong>Números sorteados:</strong> ${
-                        cartela.numeros.filter(numero => numerosSorteados.includes(numero)).length
-                    }</p>
+                    <p>${cartela.numeros.map(num =>
+                        `<span class="numero ${numerosSorteados.includes(num) ? 'sorteado' : ''}">${num}</span>`
+                    ).join('')}</p>
                 `;
                 cartelasDiv.appendChild(cartelaDiv);
             });
         };
 
-        const adicionarNumero = () => {
-            const input = document.getElementById('numeroSorteado');
-            const numero = parseInt(input.value);
-            if (!isNaN(numero) && !numerosSorteados.includes(numero)) {
-                numerosSorteados.push(numero);
-                atualizarCartelasSorteadas(numero);
-                atualizarResumo();
-                renderCartelas();
-            }
-            input.value = '';
-        };
-
-        const atualizarCartelasSorteadas = (ultimoNumero) => {
-            const cartelasSorteadas = cartelas
-                .filter(cartela => cartela.numeros.includes(ultimoNumero))
-                .map(cartela => cartela.numero);
-
-            cartelasSorteadasDiv.innerHTML = `
-                <h3>Cartelas com o número ${ultimoNumero}:</h3>
-                <p>${cartelasSorteadas.length > 0 ? cartelasSorteadas.join(', ') : 'Nenhuma cartela contém este número.'}</p>
-            `;
-        };
-
-        const atualizarResumo = () => {
-            resumoDiv.innerHTML = `
-                <h3>Números sorteados: ${numerosSorteados.join(', ')}</h3>
-            `;
-        };
-
-        const registrarCartela = async () => {
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                logDiv.innerHTML += `<p>Error accessing the camera: getUserMedia is not supported in this browser.</p>`;
-                return;
-            }
+        const iniciarCamera = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
                 video.srcObject = stream;
-                video.style.display = 'block';
-                video.play();
-
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.style.display = 'block';
-
-                // Capture the image after a short delay
-                setTimeout(async () => {
-                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    stream.getTracks().forEach(track => track.stop());
-
-                    const imageData = canvas.toDataURL('image/png');
-                    // Extract the bingo cartela number from the image
-                    try {
-                        const cartelaNumero = await extractCartelaNumber(imageData);
-                        logDiv.innerHTML += `<p>Extracted cartela number: ${cartelaNumero}</p>`;
-                    } catch (error) {
-                        logDiv.innerHTML += `<p>Error extracting cartela number: ${error}</p>`;
-                    }
-                    // Save cartelaNumero to IndexedDB or process it as needed
-                    video.style.display = 'none';
-                    canvas.style.display = 'none';
-                }, 3000);
+                tirarFotoButton.style.display = 'block';
             } catch (error) {
-                logDiv.innerHTML += `<p>Error accessing the camera: ${error}</p>`;
+                alert('Erro ao acessar a câmera: ' + error.message);
             }
         };
-        const extractCartelaNumber = async (imageData) => {
-            const { createWorker } = Tesseract;
-            const worker = createWorker({
-                logger: info => logDiv.innerHTML += `<p>${info.status}</p>` // Log progress
-            });
-            await worker.loadLanguage('eng');
-            await worker.initialize('eng');
-            const { data: { text } } = await worker.recognize(imageData);
-            await worker.terminate();
-            return text.trim(); // Return the extracted text
+
+        const capturarFoto = () => {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const dataURL = canvas.toDataURL('image/png');
+            processarImagem(dataURL);
         };
-        document.getElementById('adicionarNumero').addEventListener('click', adicionarNumero);
-        document.getElementById('registrarCartela').addEventListener('click', registrarCartela);
-        toggleLogButton.addEventListener('click', () => {
-            logDiv.classList.toggle('visible');
-            toggleLogButton.style.bottom = logDiv.classList.contains('visible') ? '450px' : '0';
-        });
-        renderCartelas();
+
+        const processarImagem = (dataURL) => {
+            statusDiv.textContent = 'Processando imagem...';
+            Tesseract.recognize(
+                dataURL,
+                'eng', // Pode ser ajustado para 'por' (Português) se necessário
+                {
+                    logger: info => console.log(info)
+                }
+            ).then(({ data: { text } }) => {
+                statusDiv.textContent = 'Imagem processada. Validando números...';
+                const numeros = validarNumeros(text);
+                if (numeros.length > 0) {
+                    const numeroCartela = cartelas.length + 1;
+                    const novaCartela = { numero: numeroCartela, numeros };
+                    cartelas.push(novaCartela);
+                    salvarCartela(novaCartela);
+                    renderCartelas();
+                } else {
+                    statusDiv.textContent = 'Nenhum número válido encontrado na cartela.';
+                }
+            }).catch(error => {
+                statusDiv.textContent = 'Erro ao processar imagem: ' + error.message;
+            });
+        };
+
+        const validarNumeros = (texto) => {
+            // Extrai apenas números e remove duplicados
+            const numeros = texto
+                .match(/\d+/g) // Encontra todos os números
+                ?.map(Number) // Converte para inteiros
+                .filter(num => num >= 1 && num <= 99) || []; // Filtra números válidos no bingo
+            return [...new Set(numeros)]; // Remove duplicados
+        };
+
+        abrirCameraButton.addEventListener('click', iniciarCamera);
+        tirarFotoButton.addEventListener('click', capturarFoto);
+        document.addEventListener('DOMContentLoaded', carregarCartelas);
     </script>
 </body>
 </html>
