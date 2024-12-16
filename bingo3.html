@@ -178,7 +178,7 @@
                 return;
             }
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
                 video.srcObject = stream;
                 video.style.display = 'block';
                 video.play();
@@ -203,7 +203,6 @@
                 logDiv.innerHTML += `<p>Error accessing the camera: ${error}</p>`;
             }
         };
-
         const extractCartelaNumber = async (imageData) => {
             const { createWorker } = Tesseract;
             const worker = createWorker({
