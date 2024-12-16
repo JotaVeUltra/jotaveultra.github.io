@@ -8,6 +8,7 @@
         canvas { border: 1px solid black; margin-top: 10px; }
         table { border-collapse: collapse; margin-top: 10px; }
         td { border: 1px solid black; padding: 10px; text-align: center; }
+        .error { color: red; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -16,6 +17,7 @@
     <canvas id="canvas" width="400" height="400"></canvas>
     <button id="process">Processar</button>
     <div id="bingo-card"></div>
+    <div id="error-log" class="error"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.0/dist/tesseract.min.js"></script>
     <script>
@@ -24,7 +26,23 @@
         const ctx = canvas.getContext('2d');
         const processButton = document.getElementById('process');
         const bingoCard = document.getElementById('bingo-card');
+        const errorLog = document.getElementById('error-log');
         let image;
+
+        // Adicionar um listener para capturar erros e exibi-los no DOM
+        window.addEventListener('error', (event) => {
+            logError(event.message);
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            logError(event.reason?.message || event.reason);
+        });
+
+        function logError(message) {
+            const errorMsg = document.createElement('div');
+            errorMsg.textContent = `Erro: ${message}`;
+            errorLog.appendChild(errorMsg);
+        }
 
         upload.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -44,7 +62,7 @@
 
         processButton.addEventListener('click', () => {
             if (!image) {
-                alert("Envie uma imagem primeiro!");
+                logError("Nenhuma imagem foi carregada. Por favor, envie uma imagem primeiro!");
                 return;
             }
 
@@ -59,8 +77,7 @@
                 const numbers = extractNumbers(text);
                 renderBingoCard(numbers);
             }).catch(err => {
-                console.error("Erro no OCR:", err);
-                alert("Erro ao processar a imagem.");
+                logError(`Erro no OCR: ${err.message}`);
             });
         });
 
