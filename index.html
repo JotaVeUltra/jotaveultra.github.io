@@ -1,84 +1,1048 @@
-<!DOCTYPE html>
-<!--
-  Identity by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<!doctype html>
 <html lang="en">
-
-<head>
-  <title>João Marques</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-  <meta name="description" content="João Marques' website.">
-  <meta name="theme-color" content="#252525">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-</head>
-
-<body class="is-preload">
-  <!-- Particles -->
-  <div id="particles-js"></div>
-  <!-- Wrapper -->
-  <div class="wrapper">
-    <!-- Main -->
-    <section id="main">
-      <header>
-        <span class="avatar">
-          <img src="https://avatars0.githubusercontent.com/u/14026866" alt="Avatar" width="122" height="122" fetchpriority="high" />
-        </span>
+  <head>
+    <title>João Marques - Full Stack Developer</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=yes"
+    />
+    <meta
+      name="description"
+      content="João Marques - Senior Full Stack Developer specializing in Laravel, Vue.js, Flutter, and AWS."
+    />
+    <meta name="theme-color" content="#252525" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://joaomarq.work/" />
+    <meta property="og:title" content="João Marques - Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Senior Full Stack Developer specializing in Laravel, Vue.js, Flutter, and AWS."
+    />
+    <meta
+      property="og:image"
+      content="https://avatars0.githubusercontent.com/u/14026866"
+    />
+    <!-- X (Twitter) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JoaoMarq" />
+    <meta name="twitter:title" content="João Marques - Full Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Senior Full Stack Developer specializing in Laravel, Vue.js, Flutter, and AWS."
+    />
+    <meta
+      name="twitter:image"
+      content="https://avatars0.githubusercontent.com/u/14026866"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+      :root {
+        --bg-primary: #252525;
+        --bg-secondary: #1a1a1a;
+        --text-light: rgba(255, 255, 255, 0.9);
+        --text-muted: rgba(255, 255, 255, 0.7);
+        --accent: #ff7496;
+        --accent-hover: #ff5277;
+        --border-light: rgba(255, 255, 255, 0.2);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        min-height: 100%;
+        background-color: var(--bg-primary);
+        color: var(--text-light);
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.5;
+      }
+      body.is-preload *,
+      body.is-preload *::before,
+      body.is-preload *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 0.75em 0;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      p {
+        margin: 0 0 1.5em 0;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      a:hover {
+        color: var(--accent-hover);
+      }
+      strong {
+        font-weight: 600;
+        color: var(--text-light);
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(37, 37, 37, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-light);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+      }
+      #nav.visible {
+        transform: translateY(0);
+      }
+      #nav ul {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 0;
+      }
+      #nav a {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 0.5rem 0;
+        position: relative;
+      }
+      #nav a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+      #nav a:hover,
+      #nav a.active {
+        color: var(--text-light);
+      }
+      #nav a:hover::after,
+      #nav a.active::after {
+        width: 100%;
+      }
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+      }
+      .hero-content {
+        z-index: 2;
+        transform: translateY(0);
+        opacity: 1;
+        transition:
+          transform 1s ease,
+          opacity 1s ease;
+      }
+      body.is-preload .hero-content {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      .avatar {
+        display: block;
+        margin-bottom: 1.5rem;
+      }
+      .avatar img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid var(--border-light);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      }
+      #hero h1 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.25em;
+      }
+      .tagline {
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 0.5em;
+      }
+      .subtitle {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 2em;
+        max-width: 400px;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        font-size: 0.85rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .icons {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+      .icons li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 1px solid var(--border-light);
+        transition: all 0.3s ease;
+      }
+      .icons li a svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: var(--text-muted);
+        transition: fill 0.3s ease;
+      }
+      .icons li a:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .icons li a:hover svg {
+        fill: var(--accent);
+      }
+      .icons .label {
+        display: none;
+      }
+      .icons-large li a {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+      .icons-large li a svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+      .scroll-down svg {
+        width: 2rem;
+        height: 2rem;
+        fill: var(--text-muted);
+        transition: fill 0.3s ease;
+      }
+      .scroll-down:hover svg {
+        fill: var(--accent);
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+      .section {
+        padding: 5rem 0;
+        position: relative;
+      }
+      .section-alt {
+        background: var(--bg-secondary);
+      }
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: var(--accent);
+        margin: 1rem auto 0;
+      }
+      .section .container {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .section.visible .container {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .about-content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .about-content p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+      }
+      .about-content strong {
+        color: var(--accent);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2rem;
+      }
+      .skill-category {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 1.5rem;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .skill-category:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+      .skill-category h3 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .skill-list li {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        padding: 0.4rem 0;
+      }
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-left: 2rem;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--border-light);
+        z-index: 0;
+      }
+      .timeline-item {
+        position: relative;
+        padding-bottom: 3rem;
+      }
+      .timeline-item:last-child {
+        padding-bottom: 0;
+      }
+      .timeline-marker {
+        position: absolute;
+        left: -2rem;
+        top: 0.25rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg-primary);
+        border: 2px solid var(--accent);
+        transform: translateX(-5px);
+        z-index: 1;
+      }
+      .timeline-content {
+        position: relative;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 1.5rem;
+        transition: border-color 0.3s ease;
+        z-index: 1;
+      }
+      .timeline-content:hover {
+        border-color: var(--accent);
+      }
+      .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .timeline-header h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      .timeline-date {
+        font-size: 0.85rem;
+        color: var(--accent);
+        font-weight: 400;
+      }
+      .timeline-role {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+      .timeline-details {
+        list-style: disc;
+        padding-left: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .timeline-details li {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        padding: 0.25rem 0;
+        line-height: 1.6;
+      }
+      .timeline-tech {
+        font-size: 0.8rem;
+        color: var(--accent);
+        font-weight: 400;
+        letter-spacing: 0.05em;
+      }
+      .contact-intro {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+      }
+      .contact-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      .contact-email {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        color: var(--text-light);
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .contact-email svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: var(--accent);
+      }
+      .contact-email:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      #footer {
+        padding: 2rem 0;
+        text-align: center;
+        border-top: 1px solid var(--border-light);
+      }
+      #footer p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+      @media screen and (max-width: 768px) {
+        #nav ul {
+          gap: 1rem;
+          padding: 0.75rem 1rem;
+          flex-wrap: wrap;
+        }
+        #nav a {
+          font-size: 0.75rem;
+        }
+        #hero h1 {
+          font-size: 1.75rem;
+          letter-spacing: 0.15em;
+        }
+        .tagline {
+          font-size: 0.95rem;
+        }
+        .subtitle {
+          font-size: 0.9rem;
+        }
+        .section {
+          padding: 3.5rem 0;
+        }
+        .section-title {
+          font-size: 1.4rem;
+        }
+        .timeline {
+          padding-left: 1.5rem;
+        }
+        .timeline-marker {
+          left: -1.5rem;
+        }
+        .timeline-header {
+          flex-direction: column;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .container {
+          padding: 0 1.25rem;
+        }
+        #hero h1 {
+          font-size: 1.5rem;
+        }
+        .avatar img {
+          width: 120px;
+          height: 120px;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          width: 100%;
+          max-width: 250px;
+        }
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+        .icons li a {
+          width: 2.75rem;
+          height: 2.75rem;
+        }
+        .icons li a svg {
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+        .skill-category {
+          padding: 1.25rem;
+        }
+        .timeline-content {
+          padding: 1.25rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .scroll-down {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <div id="vanta-bg"></div>
+    <nav id="nav">
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section id="hero">
+      <div class="hero-content">
+        <span class="avatar"
+          ><img
+            src="https://avatars0.githubusercontent.com/u/14026866"
+            alt="João Marques"
+            width="150"
+            height="150"
+            fetchpriority="high"
+        /></span>
         <h1>João Marques</h1>
-        <p>Full Stack Developer</p>
-      </header>
-      <footer>
+        <p class="tagline">Senior Full Stack Developer</p>
+        <p class="subtitle">
+          Building robust enterprise systems with modern technologies
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        </div>
         <ul class="icons">
           <li>
-            <a href="https://twitter.com/JoaoMarq" class="icon brands fa-twitter">Twitter</a>
+            <a
+              href="https://x.com/JoaoMarq"
+              aria-label="X"
+              target="_blank"
+              rel="noopener"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+              ><span class="label">X</span></a
+            >
           </li>
           <li>
-            <a href="https://instagram.com/jotaveultra/" class="icon brands fa-instagram">Instagram</a>
+            <a
+              href="https://instagram.com/jotaveultra/"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                /></svg
+              ><span class="label">Instagram</span></a
+            >
           </li>
           <li>
-            <a href="https://github.com/JotaVeUltra" class="icon brands fa-github">GitHub</a>
+            <a
+              href="https://github.com/JotaVeUltra"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                /></svg
+              ><span class="label">GitHub</span></a
+            >
           </li>
           <li>
-            <a href="https://linkedin.com/in/joão-marques-4b0898104/" class="icon brands fa-linkedin-in">LinkedIn</a>
+            <a
+              href="https://linkedin.com/in/joão-marques-4b0898104/"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                /></svg
+              ><span class="label">LinkedIn</span></a
+            >
           </li>
         </ul>
-      </footer>
+      </div>
+      <a href="#about" class="scroll-down" aria-label="Scroll to about section"
+        ><svg viewBox="0 0 24 24">
+          <path
+            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+          /></svg
+      ></a>
     </section>
-  </div>
-
-  <!-- Footer -->
-  <footer id="footer">
-    <ul class="copyright">
-      <li>João Marques</li>
-      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-    </ul>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="assets/js/particles-config.js"></script>
-  <script>
-    window.addEventListener("load", () => {
-      document.querySelector(".is-preload").classList.remove("is-preload");
-    });
-    navigator.serviceWorker.register("sw.js");
-  </script>
-</body>
-
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p>
+            I'm a <strong>Senior Full Stack Developer</strong> with over
+            <span id="years-exp"></span> years of experience building
+            enterprise-grade applications. Based in Santa Catarina, Brazil, I
+            specialize in designing and implementing scalable systems that solve
+            real business problems.
+          </p>
+          <p>
+            My expertise spans the entire development lifecycle, from
+            architecting robust backend systems with
+            <strong>Laravel</strong> and <strong>MariaDB/MySQL</strong> to
+            crafting responsive interfaces with <strong>Vue.js</strong> and
+            cross-platform mobile apps with <strong>Flutter</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <ul class="skill-list">
+              <li>PHP / Laravel</li>
+              <li>MariaDB / PostgreSQL / SQLite</li>
+              <li>REST APIs</li>
+              <li>System Design</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <ul class="skill-list">
+              <li>Vue.js</li>
+              <li>JavaScript / TypeScript</li>
+              <li>HTML / CSS</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Mobile</h3>
+            <ul class="skill-list">
+              <li>Flutter / Dart</li>
+              <li>Cross-platform Development</li>
+              <li>Mobile UI/UX</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>DevOps & Cloud</h3>
+            <ul class="skill-list">
+              <li>AWS (EC2, Route 53)</li>
+              <li>CI/CD Pipelines</li>
+              <li>Server Hardening</li>
+              <li>Linux Administration</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Systems & Tools</h3>
+            <ul class="skill-list">
+              <li>Zig</li>
+              <li>Git</li>
+              <li>Docker</li>
+              <li>Linux</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>FORVEN</h3>
+                <span class="timeline-date">Sep 2025 - Present</span>
+              </div>
+              <p class="timeline-role">Senior Full Stack Developer - Remote</p>
+              <ul class="timeline-details">
+                <li>
+                  Automated creation and configuration of customer subdomains
+                  using AWS CLI tools
+                </li>
+                <li>
+                  Secured EC2 servers and domain connections using HTTPS and
+                  strict access policies
+                </li>
+                <li>
+                  Enhanced website performance, accessibility, SEO, and best
+                  practices
+                </li>
+                <li>
+                  Collaborated on continuous improvement of infrastructure and
+                  CI/CD automation
+                </li>
+              </ul>
+              <div class="timeline-tech">
+                AWS, Route 53, EC2, DevOps, Web Performance
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>GBBS Software</h3>
+                <span class="timeline-date">May 2023 - Oct 2025</span>
+              </div>
+              <p class="timeline-role">
+                Senior Full Stack Developer - Imbituba, SC
+              </p>
+              <ul class="timeline-details">
+                <li>
+                  Developed and maintained a large-scale ERP for industrial and
+                  commercial sectors
+                </li>
+                <li>
+                  Led the design of a multi-instance ERP management system with
+                  RESTful APIs
+                </li>
+                <li>
+                  Introduced Continuous Integration and automated testing
+                  pipelines
+                </li>
+                <li>
+                  Responsible for backend scalability, frontend optimization,
+                  and AWS hosting
+                </li>
+              </ul>
+              <div class="timeline-tech">
+                Laravel, Vue.js, Flutter, AWS, MariaDB, CI/CD
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>Inkor - Tintas e Argamassas</h3>
+                <span class="timeline-date">Jan 2019 - Nov 2022</span>
+              </div>
+              <p class="timeline-role">Full Stack Developer - Imbituba, SC</p>
+              <ul class="timeline-details">
+                <li>
+                  Designed and implemented internal management systems
+                  integrating production, logistics, and sales
+                </li>
+                <li>
+                  Built responsive Vue.js interfaces connected to RESTful
+                  Laravel APIs
+                </li>
+                <li>
+                  Improved data accuracy and user experience through schema
+                  redesign
+                </li>
+              </ul>
+              <div class="timeline-tech">
+                PHP, Laravel, Vue.js, MySQL, REST APIs
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="contact-intro">
+          Interested in working together? Feel free to reach out.
+        </p>
+        <div class="contact-content">
+          <a href="mailto:contact@joaomarq.work" class="contact-email"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+              /></svg
+            >contact@joaomarq.work</a
+          >
+          <ul class="icons icons-large">
+            <li>
+              <a
+                href="https://x.com/JoaoMarq"
+                aria-label="X"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  /></svg
+                ><span class="label">X</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/jotaveultra/"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  /></svg
+                ><span class="label">Instagram</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/JotaVeUltra"
+                aria-label="GitHub"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  /></svg
+                ><span class="label">GitHub</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/joão-marques-4b0898104/"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  /></svg
+                ><span class="label">LinkedIn</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="container">
+        <p>
+          &copy; <span id="current-year"></span> João Marques. Built with
+          vanilla HTML, CSS & JavaScript.
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        document.body.classList.remove("is-preload");
+      });
+      if (
+        typeof VANTA !== "undefined" &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        VANTA.NET({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          minHeight: 200,
+          minWidth: 200,
+          scale: 1,
+          scaleMobile: 1,
+          color: 0x4a4a5a,
+          backgroundColor: 0x252525,
+          points: 10,
+          maxDistance: 18,
+          spacing: 20,
+        });
+      }
+      const now = new Date();
+      document.getElementById("years-exp").textContent = Math.floor(
+        (now - new Date(2019, 0, 1)) / (365.25 * 24 * 60 * 60 * 1000),
+      );
+      document.getElementById("current-year").textContent = now.getFullYear();
+      const nav = document.getElementById("nav"),
+        hero = document.getElementById("hero");
+      function updateNav() {
+        nav.classList.toggle(
+          "visible",
+          window.scrollY > hero.offsetHeight - 100,
+        );
+      }
+      window.addEventListener("scroll", updateNav, { passive: true });
+      updateNav();
+      const sections = document.querySelectorAll("section[id]"),
+        navLinks = document.querySelectorAll("#nav a");
+      function updateActiveNav() {
+        const y = window.scrollY + 100;
+        sections.forEach((s) => {
+          const t = s.offsetTop,
+            h = s.offsetHeight,
+            id = s.id;
+          if (y >= t && y < t + h) {
+            navLinks.forEach((l) => {
+              l.classList.toggle("active", l.getAttribute("href") === "#" + id);
+            });
+          }
+        });
+      }
+      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      updateActiveNav();
+      const obs = new IntersectionObserver(
+        (e) => {
+          e.forEach((x) => {
+            if (x.isIntersecting) x.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".section").forEach((s) => obs.observe(s));
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", function (e) {
+          const t = document.querySelector(this.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
-
-
-
-

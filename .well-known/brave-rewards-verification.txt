@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: joaomarq.work
-Token: 3f694975b730cd0af660f760b4f7da7a76ccd8c3dbdee55bf8c7541691e492b3
